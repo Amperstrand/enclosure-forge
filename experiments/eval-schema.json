@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "enclosure-forge run manifest",
+  "type": "object",
+  "required": ["run_id", "board", "board_rev", "promptset_id", "metrics"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "board": { "type": "string", "description": "board/project name" },
+    "board_repo": { "type": "string", "format": "uri" },
+    "board_rev": { "type": "string", "description": "pinned commit of the board repo the analysis JSONs were extracted from" },
+    "promptset_id": { "type": "string", "description": "id/hash of the prompt library variant used" },
+    "frontend": { "enum": ["step_dxf", "kicad"] },
+    "started_utc": { "type": "string", "format": "date-time" },
+    "finished_utc": { "type": "string", "format": "date-time" },
+    "metrics": {
+      "type": "object",
+      "required": ["iterations_to_green", "checks_total", "checks_failed_last"],
+      "properties": {
+        "iterations_to_green": { "type": "integer", "description": "validate.py runs until 0 failed" },
+        "checks_total": { "type": "integer" },
+        "checks_failed_last": { "type": "integer" },
+        "wall_clock_minutes_s0_s6": { "type": "number" },
+        "wall_clock_minutes_s6_s8": { "type": "number" },
+        "semantic_regressions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "green-boolean-but-wrong-semantics events; VETOES variant promotion when non-empty"
+        },
+        "coupon_decisions": { "type": "array", "items": { "type": "string" } },
+        "physical_outcome": { "enum": ["none", "coupon_printed", "printed", "print_feedback_folded"] }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}
