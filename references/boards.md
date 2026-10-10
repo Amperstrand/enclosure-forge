@@ -26,6 +26,16 @@ https://github.com/Amperstrand/nucula-enclosure
   its screen window shipped portrait with every boolean green; board-rev
   drift (connector swap) surfaced here and became P11.
 
+## rp2040-devboard-enclosure (target #3) — first harness run
+https://github.com/Amperstrand/rp2040-devboard-enclosure
+- Minimal dev-board case (square 53.34 board, 4×M2.5 bosses from measured
+  holes, micro-USB opening, dual header exit reliefs, friction lid), 7/7
+  checks, built end-to-end by the harness v0 in operator/record mode.
+- Proved: the generic KiCad front-end (cross-validated on nucula's own
+  numbers), the stage-trace format, the metric plumbing, and the debug
+  loop as data (two iterations, both root-caused by arithmetic, recorded
+  in the target's stages/*.json).
+
 ## The next target
 Clone whichever scaffold is closest (STEP/DXF → carrier repo; KiCad →
 nucula repo), execute SKILL.md stages S0–S9, log the run manifest, and

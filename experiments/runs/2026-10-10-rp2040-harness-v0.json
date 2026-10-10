@@ -1,0 +1,21 @@
+{
+  "run_id": "2026-10-10-rp2040-harness-v0",
+  "board": "rp2040-devboard",
+  "board_repo": "https://github.com/PartialScience/Custom-RP2040-Dev-Board",
+  "board_rev": "main (clone 2026-10-10)",
+  "promptset_id": "harness-v0 (operator-in-the-loop record mode)",
+  "frontend": "kicad",
+  "started_utc": "2026-10-10T16:00:00Z",
+  "finished_utc": "2026-10-10T17:15:00Z",
+  "metrics": {
+    "iterations_to_green": 3,
+    "checks_total": 7,
+    "checks_failed_last": 0,
+    "wall_clock_minutes_s0_s6": 75,
+    "wall_clock_minutes_s6_s8": 0,
+    "semantic_regressions": [],
+    "coupon_decisions": ["M2.5 self-tap pilot 2.1 pending coupon ladder"],
+    "physical_outcome": "none"
+  },
+  "notes": "First full run through harness v0 (trace-recorder mode, no LM configured): generic kicad_extract (cross-validated on nucula) + stage signatures + metric. Debug loop data: iter1 = seat-height omission in LID_INT_Z + J4 second 2x18 header discovered by 304.5 mm3 collision + z-plane probe bugs; iter2 = pilot fused instead of cut (3.14 = pi*r^2*h confirmed by arithmetic); iter3 green. Traces: traces/rp2040-001.jsonl + target repo stages/*.json. Output repo: Amperstrand/rp2040-devboard-enclosure."
+}
