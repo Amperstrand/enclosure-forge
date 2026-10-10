@@ -108,9 +108,25 @@ Conventions: `analysis/*.json` = machine-extracted board geometry;
 > anchored completion markers (`echo DONE_$?` + regex `^DONE_[0-9]+$` —
 > bare markers false-match the echoed command line).
 
+**P13 — peripheral-bay** *(S3/S4, when the board expects an external peripheral)*
+> From the board docs, identify the intended peripheral class and its
+> manufacturer outline. Try to fetch a real 3D model; if every download is
+> login-gated, build a stand-in from the OFFICIAL outline only and
+> disclose it. Probe whether a flush panel cutout fits: the interior
+> vertical span budget (edge connectors, service headers + pigtail
+> headroom) rules it out more often than not — then design an exterior
+> bay/podium: interior clears the service header, recess seats the
+> peripheral, zone flare derives from outline + margins, service opening
+> in the bay floor. Checks: stand-in seats without wall contact; service
+> opening clear; full matrix on the variant.
+
 ## Changelog
 
 - 2026-10-09: P3 (orient) and P11 (board-rev drift) added after the
   nucula portrait-window bug (all booleans green, screen semantically
   rotated) and the J2 PH→SH connector drift discovery. P8 gained the
   artifact-proof clause for the same reason.
+- 2026-10-10: P13 (peripheral-bay) added after nucula V4: intended
+  keypad identified from board docs, official-dims stand-in (models
+  login-gated), exterior bay after flush-cutout elimination, zone flare
+  +80→57-style full-matrix validation (80/80).

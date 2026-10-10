@@ -105,6 +105,25 @@ X=meta/process.
 32. Fit-check with drop-over gauge pins when under-board parts exceed
     pocket depth; pin Ø follows the MODELLED drill [L15].
 
+## PR2 — External peripherals (2026-10-10, nucula V4)
+37. The intended peripheral is part of the measurement: board docs name
+    it (nucula keyboard-interface.md cites the Adafruit 3845 arrangement
+    on J3) — read them before designing its mounting.
+38. Official datasheet dims beat gated 3D models: every download path for
+    the exact keypad STEP is login-walled (printables CF+account, GrabCAD
+    401 API, thangs/tinkercad/3dsearch). Build the stand-in from the
+    official outline ONLY, tag the key grid conservative, disclose
+    everywhere, and keep bay dims independent of stand-in cosmetics.
+39. A peripheral wider than the board forces a zone flare: derive the
+    flare from peripheral outline + service margins (not aesthetics), use
+    vertical seam faces only, and re-run the full validation matrix on the
+    flared variant.
+40. Flush panel-mount cutouts die on interior tall parts: bottom-zone
+    vertical spans are bounded by edge connectors (USB) and service
+    headers + pigtails — probe the span budget before choosing recess
+    depth; an exterior bay with its own podium is the fallback that
+    never touches the cavity.
+
 ## X — Meta/process
 33. Generated assets (renders) deploy via CI to Pages, not git; audits
     run in the pipeline; orphan-branch deploys from a job dir [L47].

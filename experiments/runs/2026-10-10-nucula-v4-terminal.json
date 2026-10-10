@@ -1,0 +1,21 @@
+{
+  "run_id": "2026-10-10-nucula-v4-terminal",
+  "board": "nucula",
+  "board_repo": "https://github.com/zeugmaster/nucula-board",
+  "board_rev": "production-2026-10-08 package (clone 2026-10-09)",
+  "promptset_id": "P-v0+P3+P11+P13",
+  "frontend": "kicad",
+  "started_utc": "2026-10-10T11:30:00Z",
+  "finished_utc": "2026-10-10T15:10:00Z",
+  "metrics": {
+    "iterations_to_green": 3,
+    "checks_total": 80,
+    "checks_failed_last": 0,
+    "wall_clock_minutes_s0_s6": 210,
+    "wall_clock_minutes_s6_s8": 0,
+    "semantic_regressions": [],
+    "coupon_decisions": [],
+    "physical_outcome": "none"
+  },
+  "notes": "User-directed payment-terminal iteration on nucula-enclosure: screen raised to v 16.6..46.0 (iteration 1, 57/57), then V4 terminal variant (keypad bay + zone flare + J3 service opening, 80/80). Iterations to green: (1) comp_height('J3') returned the passive default 1.0 -> podium degenerate -> fixed to KB_HEADER_H; (2) flare slab fused after podium hollowing refilled the interior over J3 (118 mm3 collision) -> reordered fuse-before-cut; (3) green. Keypad research: board docs name the Adafruit 3845 arrangement on J3 (pins 2-8, 7 lines); official 1824 outline 70x50x7; every real-model download login-gated (printables CF, GrabCAD 401, thangs/tinkercad/3dsearch) — official-dims stand-in, disclosed; bay dims independent of stand-in cosmetics. Semantics verified at artifact level (bay pocket 71.20x51.20, deck ring 59.15x32.20) in addition to booleans. Vision verification unavailable this session (no image input; zai MCP timeouts) — replaced by STL section proofs, the stronger evidence class anyway."
+}
