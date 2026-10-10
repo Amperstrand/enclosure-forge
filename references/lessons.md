@@ -135,3 +135,26 @@ X=meta/process.
 36. A methodology that reproduces across two measurement front-ends is a
     framework; each new target must cross-apply rules and sync lessons
     back here [S].
+
+## Landscape update (2026-10-10, second scan — agentic CAD + self-improving eng agents)
+
+- ModelRift CadQuery-vs-OpenSCAD agentic benchmark (2026-09): 6 unattended
+  runs, independent mesh verification. Verdict that validates our gate:
+  "every defect that would have ruined a print was found by a number,
+  not a screenshot"; neither tool's self-report is the last word (OCCT
+  union silently dropped a solid with valid=True; caught only by volume).
+  CadQuery wins on verifiability (query the kernel + assert), which is
+  exactly our validate.py pattern.
+- AnalogAgent (ACM 2026): self-improving analog-circuit agents with a
+  self-evolving memory ("Adaptive Design Playbook") — curated, deduped,
+  retrieved per task. Our lessons.md + run manifests are that playbook;
+  adopt the retrieval step when the corpus grows.
+- CADSmith / ai-cad: multi-agent CadQuery loops with kernel-measurement
+  validators and regression-gated repairs; ai-cad runs keyless through
+  the claude CLI's own auth — the same pattern as our OpenCodeLM pipe.
+- Verdict: the pieces exist (agentic CadQuery loops, self-improving
+  engineering agents, keyless CLI harnesses); nobody combines
+  board-repo -> validated enclosure with boolean gates against extracted
+  reference geometry + cross-project lesson distillation + dspy
+  compilation. The niche holds. Borrow: playbook retrieval (AnalogAgent),
+  numeric-gates-over-vision (ModelRift), regression-gated repairs (ai-cad).
