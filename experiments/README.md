@@ -27,7 +27,11 @@ SAME board with DIFFERENT prompt sets:
 3. Compare metrics; promote the winner into `references/prompts.md` with
    a changelog line.
 
-## dspy evolution (planned)
+## dspy evolution (designed — see `dspy-design.md`)
+
+The full architecture (module decomposition, metric, optimizer ladder,
+trainset plan, honest limits, 2026-10 landscape scan) lives in
+**`dspy-design.md``. Summary of the original sketch:
 
 The next step is to drive the same loop with
 [dspy](https://dspy.ai): each stage prompt becomes a signed `dspy.Module`
