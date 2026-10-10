@@ -36,6 +36,15 @@ https://github.com/Amperstrand/rp2040-devboard-enclosure
   loop as data (two iterations, both root-caused by arithmetic, recorded
   in the target's stages/*.json).
 
+## easyduino-esp32-enclosure (target #4) — first zero-hole board
+https://github.com/Amperstrand/easyduino-esp32-enclosure
+- Pad-and-rail retention class added to the trainset (no holes ->
+  rails + pads + antenna-side rim); KiCad-10 + footprint-outline
+  dialects hardened in the front-end; 7/7 checks.
+- Same session: rp2040 target #3 re-run FULLY IN LM MODE through the
+  opencode pipe (S2/S3/S4) — LM values validated 7/7 first attempt;
+  A/B value diffs + the weak-envelope veto lesson recorded.
+
 ## The next target
 Clone whichever scaffold is closest (STEP/DXF → carrier repo; KiCad →
 nucula repo), execute SKILL.md stages S0–S9, log the run manifest, and

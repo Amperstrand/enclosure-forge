@@ -1,0 +1,32 @@
+{
+ "WALL_T": 2.0,
+ "FLOOR_T": 2.0,
+ "CORNER_R": 3.0,
+ "COMP_Z_CLEARANCE": 2.0,
+ "BOSS_OUTER": 6.0,
+ "BOSS_PILOT": 2.1,
+ "BOARD_SEAT_Z": 2.0,
+ "USB_PLUG_W": 11.5,
+ "USB_PLUG_H": 5.5,
+ "USB_CLEAR": 0.25,
+ "USB_REACH": 2.0,
+ "HDR_EXIT_REACH": 4.5,
+ "LID_LIP": 2.0,
+ "LID_GAP": 0.25,
+ "provenance": {
+  "WALL_T": "enclosure_design_decision",
+  "FLOOR_T": "enclosure_design_decision",
+  "CORNER_R": "enclosure_design_decision",
+  "COMP_Z_CLEARANCE": "enclosure_design_decision",
+  "BOSS_OUTER": "enclosure_design_decision",
+  "BOSS_PILOT": "manufacturer_doc",
+  "BOARD_SEAT_Z": "enclosure_design_decision",
+  "USB_PLUG_W": "enclosure_design_decision",
+  "USB_PLUG_H": "enclosure_design_decision",
+  "USB_CLEAR": "enclosure_design_decision",
+  "USB_REACH": "enclosure_design_decision",
+  "HDR_EXIT_REACH": "enclosure_design_decision",
+  "LID_LIP": "enclosure_design_decision",
+  "LID_GAP": "enclosure_design_decision"
+ }
+}

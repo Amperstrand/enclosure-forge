@@ -1,0 +1,19 @@
+{
+  "run_id": "2026-10-10-rp2040-lm-mode",
+  "board": "rp2040-devboard",
+  "board_repo": "https://github.com/PartialScience/Custom-RP2040-Dev-Board",
+  "board_rev": "main (clone 2026-10-10)",
+  "promptset_id": "harness-v0 + OpenCodeLM pipe (glm via opencode run)",
+  "frontend": "kicad",
+  "metrics": {
+    "iterations_to_green": 1,
+    "checks_total": 7,
+    "checks_failed_last": 0,
+    "wall_clock_minutes_s0_s6": 45,
+    "wall_clock_minutes_s6_s8": 0,
+    "semantic_failures": [],
+    "coupon_decisions": [],
+    "physical_outcome": "none"
+  },
+  "notes": "FIRST FULLY-LM-MODE BOARD: S2/S3/S4 judgment stages executed through the opencode pipe; S4 values (14 literals, provenance-tagged) substituted into the template and validated 7/7 + deterministic on the FIRST attempt (local build; ai-legion was down). A/B vs operator values: WALL 2.0 vs 1.6, SEAT 2.0 vs 3.0, USB_PLUG 11.5x5.5 vs 8.0x3.2 (LM more conservative), USB_REACH 2.0 vs 12.0 (WEAK-ENVELOPE regression class -> new veto candidate), HDR_EXIT 4.5 vs 10. Pipe latency: 60-800s/call; one S3 lost to a 300s timeout (raised to 800)."
+}

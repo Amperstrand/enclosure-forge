@@ -83,6 +83,7 @@ COMP_HEIGHTS = [
     ("Crystal", 0.9), ("ABM8", 0.9), ("C_0402", 0.5), ("C_0603", 0.7),
     ("C_0805", 1.0), ("C_1206", 1.2), ("R_0402", 0.5), ("R_0603", 0.7),
     ("R_0805", 1.0), ("LED", 0.8), ("Button", 2.0), ("SW_", 2.0),
+    ("WROOM", 3.2), ("ESP32", 3.2), ("Pico", 1.0), ("USB_C_Receptacle", 3.3),
     ("Connector", 7.0), ("JST", 5.6), ("TF", 2.0), ("microSD", 2.0),
 ]
 
@@ -136,24 +137,39 @@ def main() -> int:
     gen = find(root, "general") or []
     thickness = next((t for t in gen if isinstance(t, (int, float))), None)
 
-    # outline: every Edge.Cuts line/arc/rect segment -> polyline
+    def xform(fp_at, px, py):
+        fx, fy = float(fp_at[1]), float(fp_at[2])
+        deg = float(fp_at[3]) if len(fp_at) > 3 else 0.0
+        rx, ry = rotate([(px, py)], deg)[0]
+        return fx + rx, fy + ry
+
+    # outline: Edge.Cuts graphics at board level (gr_line gr_rect gr_arc
+    # in KiCad 6-9; bare line/arc/rect in KiCad 10) AND Edge.Cuts
+    # fp_line/fp_rect/fp_arc inside footprints (the board-frame-footprint
+    # trick), transformed through each footprint's placement
     segs = []
-    for layer_list in (root,):
-        for gr in find_all(layer_list, "gr_line") + find_all(layer_list, "gr_rect"):
-            lay = find(gr, "layer")
-            if not lay or "Edge.Cuts" not in str(lay[1]):
-                continue
-            s, e = find(gr, "start"), find(gr, "end")
-            if s and e:
-                segs.append(((float(s[1]), float(s[2])), (float(e[1]), float(e[2]))))
-        for ga in find_all(layer_list, "gr_arc"):
-            lay = find(ga, "layer")
-            if not lay or "Edge.Cuts" not in str(lay[1]):
-                continue
-            s, m, e = find(ga, "start"), find(ga, "mid"), find(ga, "end")
-            if s and m and e:
-                segs.append(((float(s[1]), float(s[2])), (float(m[1]), float(m[2]))))
-                segs.append(((float(m[1]), float(m[2])), (float(e[1]), float(e[2]))))
+    graphics = []
+    for key in ("gr_line", "gr_rect", "gr_arc", "line", "rect", "arc"):
+        graphics += [(None, g) for g in find_all(root, key)]
+    for fp in find_all(root, "footprint"):
+        fp_at = find(fp, "at")
+        for key in ("fp_line", "fp_rect", "fp_arc"):
+            for g in find_all(fp, key):
+                graphics.append((fp_at, g))
+    for fp_at, gr in graphics:
+        lay = find(gr, "layer")
+        if not lay or "Edge.Cuts" not in str(lay[1]):
+            continue
+        s, e, m = find(gr, "start"), find(gr, "end"), find(gr, "mid")
+        if not (s and e):
+            continue
+        pts = [(float(s[1]), float(s[2])), (float(e[1]), float(e[2]))]
+        if m:
+            pts = [(float(s[1]), float(s[2])), (float(m[1]), float(m[2])),
+                   (float(e[1]), float(e[2]))]
+        if fp_at is not None:
+            pts = [xform(fp_at, p[0], p[1]) for p in pts]
+        segs.extend(zip(pts, pts[1:]))
     pts = [p for seg in segs for p in seg]
     if not pts:
         print("no Edge.Cuts geometry found", file=sys.stderr)

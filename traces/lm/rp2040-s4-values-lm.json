@@ -1,0 +1,44 @@
+{
+  "WALL_T": 2.0,
+  "FLOOR_T": 2.0,
+  "CORNER_R": 3.0,
+  "COMP_Z_CLEARANCE": 2.0,
+  "BOSS_OUTER": 6.0,
+  "BOSS_PILOT": 2.1,
+  "BOARD_SEAT_Z": 2.0,
+  "USB_PLUG_W": 11.5,
+  "USB_PLUG_H": 5.5,
+  "USB_CLEAR": 0.25,
+  "USB_REACH": 2.0,
+  "HDR_EXIT_REACH": 4.5,
+  "LID_LIP": 2.0,
+  "LID_GAP": 0.25,
+  "provenance": {
+    "WALL_T": "enclosure_design_decision",
+    "FLOOR_T": "enclosure_design_decision",
+    "CORNER_R": "enclosure_design_decision",
+    "COMP_Z_CLEARANCE": "enclosure_design_decision",
+    "BOSS_OUTER": "enclosure_design_decision",
+    "BOSS_PILOT": "manufacturer_doc",
+    "BOARD_SEAT_Z": "enclosure_design_decision",
+    "USB_PLUG_W": "enclosure_design_decision",
+    "USB_PLUG_H": "enclosure_design_decision",
+    "USB_CLEAR": "enclosure_design_decision",
+    "USB_REACH": "enclosure_design_decision",
+    "HDR_EXIT_REACH": "enclosure_design_decision",
+    "LID_LIP": "enclosure_design_decision",
+    "LID_GAP": "enclosure_design_decision"
+  }
+}
+Rationale (all values cross-checked against the S3 envelope plan; no measured board value retyped):
+- **WALL_T 2.0 / FLOOR_T 2.0** — mid-range FDM practice (1.6–2.4), 5×0.4 mm perimeters in PETG; inner wall at the plan's −0.3 insertion margin → outer at −2.3, leaving 2.2 mm of the j3/j4 exit corridors proud of the wall as intended by item 6/7.
+- **CORNER_R 3.0** — bosses sit ≥9 mm inboard of walls, so corners don't interact with them; prints clean in PETG.
+- **COMP_Z_CLEARANCE 2.0** — min air gap above tallest inflated solid (9.3 mm headers); actual lid plane is service-driven at 14.0 via the j2/lid probe (item 8), so 2.0 is a rule, not a contradiction.
+- **BOSS_OUTER 6.0** — must equal the plan's ⌀6.0 boss keepout exactly; wall around pilot = (6.0−2.1)/2 = 1.95 mm ≥ 1.6 ✓.
+- **BOSS_PILOT 2.1 (manufacturer_doc)** — M2.5 self-tap pilot for PETG per fastener-doc guidance (P4 fastener-truth: pilot from material doc, not taste); screw drops through the measured ⌀2.7 drills, taps the 2.1 pilot below.
+- **BOARD_SEAT_Z 2.0** — nothing populated under the board; clears solder fillets, gives screw engagement below the 1.6 slab.
+- **USB_PLUG_W/H 11.5/5.5** — matches the plan's plug section assertion (mating hardware unknowable from solids → design decision class per item 4).
+- **USB_CLEAR 0.25** — exactly reproduces the 12.0-wide corridor (26.6755 ± 6.0 = 11.5 + 2×0.25); wall-plane cutout 12.0 ⊇ 11.5 × 5.5 ✓ without cutting outside the service envelope.
+- **USB_REACH 2.0** — interior intrusion of the mated plug past the board edge (plan: 1.963); exterior stub is covered by the pigtail loop envelope.
+- **HDR_EXIT_REACH 4.5** — matches j3 (u −4.5) and j4 (57.8 − 53.34) corridor extents beyond the outline.
+- **LID_LIP 2.0 / LID_GAP 0.25** — lip survives only at corners/USB lintel since side service spans nearly full v and full cavity height; modest engagement, PETG slip-fit gap (coupon arbitrates in S8).

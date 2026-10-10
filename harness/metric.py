@@ -23,6 +23,9 @@ VETO_CLASSES = [
     ("intended_contact_unnamed",
      "check passes only by widening a gate or removing a named "
      "intended-contact subtraction"),
+    ("weak_envelope",
+     "envelope reach does not cover the connector face + minimum plug "
+     "body (USB_REACH-class regression seen 2026-10-10)"),
 ]
 
 

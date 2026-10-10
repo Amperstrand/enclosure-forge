@@ -158,3 +158,17 @@ X=meta/process.
   reference geometry + cross-project lesson distillation + dspy
   compilation. The niche holds. Borrow: playbook retrieval (AnalogAgent),
   numeric-gates-over-vision (ModelRift), regression-gated repairs (ai-cad).
+
+## M — Measure (2026-10-10 evening, harness runs)
+41. KiCad 10 renamed gr_line/gr_arc to bare line/arc, and boards may
+    draw the outline INSIDE a footprint (board-frame-footprint trick):
+    collect Edge.Cuts from both levels, transformed through placements
+    (easyduino extractor fix).
+42. Module height rules matter: WROOM defaulting to the 1.0 passive
+    class silently under-sizes interiors (3.2 real).
+43. LM-chosen parameters can pass the gate with a WEAK envelope
+    (USB_REACH 2.0 mm covering no connector) — gate quality is itself a
+    regression class; veto: envelope reach must cover the connector
+    face + minimum plug body.
+44. Local validation of small cases is a sub-10-minute class — the
+    build box is a convenience, not a dependency.

@@ -1,0 +1,19 @@
+{
+  "run_id": "2026-10-10-easyesp32-target4",
+  "board": "easyduino-esp32",
+  "board_repo": "https://github.com/Hanqaqa/Easyduino",
+  "board_rev": "master (sparse clone 2026-10-10)",
+  "promptset_id": "harness-v0 (S2 via OpenCodeLM pipe; S3/S4 operator)",
+  "frontend": "kicad",
+  "metrics": {
+    "iterations_to_green": 2,
+    "checks_total": 7,
+    "checks_failed_last": 0,
+    "wall_clock_minutes_s0_s6": 50,
+    "wall_clock_minutes_s6_s8": 0,
+    "semantic_failures": [],
+    "coupon_decisions": ["rail clamp feel 0.8 mm lips - first print arbiter"],
+    "physical_outcome": "none"
+  },
+  "notes": "First ZERO-HOLE board -> pad-and-rail retention class (new for the trainset). Front-end hardened for KiCad 10 (bare line/arc names) and the Edge.Cuts-in-footprint outline trick; WROOM height rule added (3.2). Debug iter 1: rail solid-through-board 64 mm3 (arithmetic-confirmed 0.8x25x1.6x2) -> L-profile; rim probe placement. ai-legion down -> local validation (sub-10-min class)."
+}
