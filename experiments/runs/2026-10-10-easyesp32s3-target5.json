@@ -1,0 +1,18 @@
+{
+ "run_id": "2026-10-10-easyesp32s3-target5",
+ "board": "easyduino-esp32s3",
+ "board_repo": "https://github.com/Hanqaqa/Easyduino",
+ "board_rev": "master (sparse clone 2026-10-10)",
+ "promptset_id": "harness-v0 (S2 via OpenCodeLM pipe; template reuse)",
+ "frontend": "kicad",
+ "metrics": {
+  "iterations_to_green": 1,
+  "checks_total": 7,
+  "checks_failed_last": 0,
+  "wall_clock_minutes_s0_s6": 35,
+  "wall_clock_minutes_s6_s8": 0,
+  "semantic_failures": [],
+  "physical_outcome": "none"
+ },
+ "notes": "TEMPLATE-REUSE MILESTONE: 7/7 on the FIRST validation run, zero debug iterations (rail-class for s3 dual-USB; boss-class for pico incl. the authentic slanted-end hole at u 16.59). Score 1.0. GLB assembly shipped via render_best (P15)."
+}

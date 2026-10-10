@@ -1,0 +1,15 @@
+{
+ "run_id": "retrofit-lilygo-target1",
+ "board": "lilygo-a7670-simhat-carrier",
+ "board_repo": "https://github.com/Amperstrand/lilygo-a7670-simhat-carrier",
+ "promptset_id": "pre-harness (manual, lessons 1-47 era)",
+ "frontend": "step_dxf",
+ "metrics": {
+  "iterations_to_green": null,
+  "checks_total": 63,
+  "checks_failed_last": 0,
+  "semantic_failures": [],
+  "physical_outcome": "print_feedback_folded"
+ },
+ "notes": "RETROFIT into the manifest corpus (built before the harness). CI: 35/35 full + 28/28 low green. Improvement items: migrate interference_report.json to the harness list schema so the forge metric scores it (currently legacy dict, score pending); regenerate as a harness target when the STEP/DXF front-end joins the harness."
+}

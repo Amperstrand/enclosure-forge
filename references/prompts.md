@@ -120,12 +120,32 @@ Conventions: `analysis/*.json` = machine-extracted board geometry;
 > in the bay floor. Checks: stand-in seats without wall contact; service
 > opening clear; full matrix on the variant.
 
+**P14 — readme-refresh** *(S6/S9, after every green validation)*
+> Regenerate the target README's status block from the machine-readable
+> truth only: check counts and score from interference_report.json via
+> the forge metric, iteration count from the run manifest, artifact
+> links (GLB assembly, STLs for the GitHub viewer, renders) from the
+> files that actually exist. No hand-typed numbers survive a re-run;
+> stale READMEs are a regression class.
+
+**P15 — render-best** *(S7, ship gate for "best version")*
+> Produce the best-version visualization set: (a) an assembly GLB
+> (bottom + lid tinted + board proxy) via harness/render_best.py —
+> viewable anywhere, no browser needed; (b) labeled PNG views (iso/top/
+> port) + a close-up of the feature under test via the three.js path
+> when a browser is available (system-chromium headless is flaky — the
+> build box or a real playwright install is the reliable host); (c) link
+> both from the README per P14. Renders illustrate; the report decides.
+
 ## Changelog
 
 - 2026-10-09: P3 (orient) and P11 (board-rev drift) added after the
   nucula portrait-window bug (all booleans green, screen semantically
   rotated) and the J2 PH→SH connector drift discovery. P8 gained the
   artifact-proof clause for the same reason.
+- 2026-10-10 (evening): P14/P15 (readme-refresh, render-best) added
+  while scoring all six enclosures and shipping GLB assemblies; metric
+  made bilingual for legacy report schemas (lilygo migration pending).
 - 2026-10-10: P13 (peripheral-bay) added after nucula V4: intended
   keypad identified from board docs, official-dims stand-in (models
   login-gated), exterior bay after flush-cutout elimination, zone flare

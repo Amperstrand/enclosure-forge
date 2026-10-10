@@ -29,10 +29,26 @@ VETO_CLASSES = [
 ]
 
 
+def _norm_checks(report):
+    """Accept both schemas: the harness list [{pass: bool}, ...] and the
+    legacy dict {name: {...}} (nucula/lilygo report writers)."""
+    if isinstance(report, dict):
+        out = []
+        for name, val in report.items():
+            if isinstance(val, dict):
+                ok = val.get("pass", val.get("ok",
+                    str(val.get("status", "")).upper() == "PASS"))
+                out.append({"pass": bool(ok)})
+        return out
+    if all(isinstance(r, dict) for r in report):
+        return report
+    return []
+
+
 def score_report(report_path: str, iterations: int = 1,
                  semantic_failures: list[str] | None = None) -> dict:
     with open(report_path) as f:
-        report = json.load(f)
+        report = _norm_checks(json.load(f))
     passed = sum(1 for r in report if r["pass"])
     total = max(1, len(report))
     speed = 1.0 / max(1, iterations)

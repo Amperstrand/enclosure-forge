@@ -1,0 +1,17 @@
+{
+ "run_id": "retrofit-nucula-portrait-regression",
+ "board": "nucula",
+ "board_repo": "https://github.com/Amperstrand/nucula-enclosure",
+ "promptset_id": "pre-P3 (no orient stage)",
+ "frontend": "kicad",
+ "metrics": {
+  "iterations_to_green": null,
+  "checks_total": 57,
+  "checks_failed_last": 0,
+  "semantic_failures": [
+   "orientation_violation: portrait OLED window, all 57 booleans green"
+  ],
+  "physical_outcome": "none"
+ },
+ "notes": "THE semantic-regression case study, retrofitted: the run that spawned P3 (orient), the veto list, and the artifact-proof clause in P8. Current state: V4 terminal 80/80, score 0.80."
+}
