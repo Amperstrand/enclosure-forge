@@ -36,23 +36,22 @@ def _pick(repo, kind):
     return None
 
 
-def assembly_glb(repo, bottom_p, lid_p, out_path):
+def assembly_glb(repo, bottom_p, lid_p, out_path, with_pcb=True):
     scene = trimesh.Scene()
     bottom = trimesh.load(bottom_p)
     lid = trimesh.load(lid_p)
     bottom.visual.face_colors = trimesh.visual.color.hex_to_rgba("#2f3a45")
     lid.visual.face_colors = trimesh.visual.color.hex_to_rgba("#3c4a57")
     scene.add_geometry(bottom, node_name="bottom")
-    lid_apply = lid.copy()
-    lid_apply.apply_translation([0, 0, 0])
-    scene.add_geometry(lid_apply, node_name="lid")
-    bb = bottom.bounds
-    board = trimesh.creation.box(
-        extents=[bb[1][0] - bb[0][0] - 3.2, bb[1][1] - bb[0][1] - 3.2, 1.6])
-    board.apply_translation([(bb[0][0] + bb[1][0]) / 2,
-                             (bb[0][1] + bb[1][1]) / 2, 1.8 + 0.8])
-    board.visual.face_colors = trimesh.visual.color.hex_to_rgba("#1a6e8a")
-    scene.add_geometry(board, node_name="board_proxy")
+    scene.add_geometry(lid, node_name="lid")
+    if with_pcb:
+        bb = bottom.bounds
+        board = trimesh.creation.box(
+            extents=[bb[1][0] - bb[0][0] - 3.2, bb[1][1] - bb[0][1] - 3.2, 1.6])
+        board.apply_translation([(bb[0][0] + bb[1][0]) / 2,
+                                 (bb[0][1] + bb[1][1]) / 2, 1.8 + 0.8])
+        board.visual.face_colors = trimesh.visual.color.hex_to_rgba("#1a6e8a")
+        scene.add_geometry(board, node_name="board_proxy")
     scene.export(out_path)
     return out_path
 
@@ -137,7 +136,8 @@ def png_renders(repo, bottom_p, lid_p, name):
 
 
 def main():
-    repo = os.path.abspath(sys.argv[1])
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    repo = os.path.abspath(args[0] if args else ".")
     name = os.path.basename(repo).replace("-enclosure", "").replace("-devboard", "")
     bottom_p, lid_p = _pick(repo, "bottom"), _pick(repo, "lid")
     if not (bottom_p and lid_p):
@@ -145,9 +145,12 @@ def main():
         return 1
     print(f"== {name}: {os.path.basename(bottom_p)} + {os.path.basename(lid_p)}")
     os.makedirs(os.path.join(repo, "exports"), exist_ok=True)
+    with_pcb = "--no-pcb" not in sys.argv
+    suffix = "" if with_pcb else "_printed_only"
     glb = assembly_glb(repo, bottom_p, lid_p,
-                       os.path.join(repo, "exports", f"{name}_assembly.glb"))
-    print("  glb:", os.path.basename(glb))
+                       os.path.join(repo, "exports", f"{name}_assembly{suffix}.glb"),
+                       with_pcb=with_pcb)
+    print("  glb:", os.path.basename(glb), "(pcb)" if with_pcb else "(printed parts only)")
     png_renders(repo, bottom_p, lid_p, name)
     return 0
 
