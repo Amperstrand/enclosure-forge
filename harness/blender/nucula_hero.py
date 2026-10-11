@@ -120,7 +120,7 @@ def main():
     bg.inputs[1].default_value = 1.0
     scene.world = world
 
-    # camera
+    # camera: orbit empty at device center + track-to focus (never drifts)
     cam_data = bpy.data.cameras.new("cam")
     cam_data.lens = 50
     cam = bpy.data.objects.new("cam", cam_data)
@@ -129,6 +129,20 @@ def main():
 
     R = max(bb.x, bb.y) * 1.55 + 30
     settle_frame = int(FRAMES * 0.38)
+
+    orbit = bpy.data.objects.new("orbit", None)
+    scene.collection.objects.link(orbit)
+    orbit.location = (center[0], center[1], 0)
+    cam.parent = orbit
+    cam.location = (R, 0.0, R * 0.42)
+
+    focus = bpy.data.objects.new("focus", None)
+    scene.collection.objects.link(focus)
+    focus.location = (center[0], center[1], 8.0)
+    con = cam.constraints.new(type="TRACK_TO")
+    con.target = focus
+    con.track_axis = "TRACK_NEGATIVE_Z"
+    con.up_axis = "UP_Y"
 
     # explode offsets animate to zero
     for key, (_, _, _, lift) in zip(objs, PARTS):
@@ -149,27 +163,21 @@ def main():
     empty.location = (center[0], center[1], 0)
     for o in objs.values():
         o.parent = empty
-    empty.rotation_euler.z = 0.0
-    empty.keyframe_insert("rotation_euler", frame=settle_frame)
-    empty.rotation_euler.z = math.radians(360)
-    empty.keyframe_insert("rotation_euler", frame=FRAMES)
-
-    # camera path: dolly in during settle, then slow orbit opposite
-    def cam_at(frame, radius, elev_deg, az_deg):
-        el, az = math.radians(elev_deg), math.radians(az_deg)
-        cam.location = (
-            center[0] + radius * math.cos(el) * math.sin(az),
-            center[1] - radius * math.cos(el) * math.cos(az),
-            radius * math.sin(el))
-        rot = (math.pi / 2 - el, 0.0, az)
-        cam.rotation_euler = (0, 0, 0)
-        cam.rotation_euler = rot
-        cam.keyframe_insert("location", frame=frame)
-        cam.keyframe_insert("rotation_euler", frame=frame)
-
-    cam_at(1, R * 1.5, 32, 38)
-    cam_at(settle_frame, R, 22, 30)
-    cam_at(FRAMES, R * 0.96, 18, 30 - 150)
+    # object stays STATIC; the orbit empty carries the camera around it
+    orbit.rotation_euler.z = math.radians(-14)
+    orbit.keyframe_insert("rotation_euler", frame=1)
+    orbit.rotation_euler.z = 0.0
+    orbit.keyframe_insert("rotation_euler", frame=settle_frame)
+    orbit.rotation_euler.z = math.radians(346)   # continue the same direction
+    orbit.keyframe_insert("rotation_euler", frame=FRAMES)
+    for fc in orbit.animation_data.action.fcurves:
+        for kp in fc.keyframe_points:
+            kp.interpolation = "BEZIER"
+    # gentle dolly-in during the settle phase only
+    cam.location = (R * 1.25, 0.0, R * 0.55)
+    cam.keyframe_insert("location", frame=1)
+    cam.location = (R, 0.0, R * 0.42)
+    cam.keyframe_insert("location", frame=settle_frame)
 
     # render settings
     scene.render.engine = "CYCLES"
