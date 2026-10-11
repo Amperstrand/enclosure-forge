@@ -172,3 +172,12 @@ X=meta/process.
     face + minimum plug body.
 44. Local validation of small cases is a sub-10-minute class — the
     build box is a convenience, not a dependency.
+45. A loft between two rects is a SOLID BLOCK, not a ring: the V5
+    chamfered shoulder ran through the keyboard-section cavity (4 red
+    checks, U8 345 mm3) until the interior was subtracted. Lofts need
+    explicit cavity cuts — same class as "a mirrored placement is not a
+    placement".
+46. Product polish is a geometry class with its own checks: raised
+    presentation (bay depth), chamfered transitions (sloped loft with
+    cavity cut), vertical-edge-only radii (top rounding hurts FDM).
+    Re-run the full matrix after any of them (V5: 80/80).

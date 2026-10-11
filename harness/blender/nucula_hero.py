@@ -66,14 +66,14 @@ def main():
     scene = bpy.context.scene
 
     mats = {
-        "petg_slate": principled("PETG_slate", (0.16, 0.19, 0.23),
-                                 rough=0.34, coat=0.18),
+        "petg_slate": principled("PETG_slate", (0.15, 0.175, 0.21),
+                                 rough=0.46, coat=0.28),
         "pcb": principled("PCB", (0.045, 0.07, 0.055), rough=0.42,
                           metallic=0.12),
         "glass": principled("Glass", (0.92, 0.94, 0.96), rough=0.04,
                             transmission=0.92, ior=1.5),
-        "keypad": principled("Keypad", (0.10, 0.11, 0.12), rough=0.48,
-                             coat=0.05),
+        "keypad": principled("Keypad", (0.12, 0.125, 0.13), rough=0.55,
+                             coat=0.04),
         "battery": principled("Battery", (0.55, 0.33, 0.22), rough=0.5,
                               metallic=0.25),
     }
