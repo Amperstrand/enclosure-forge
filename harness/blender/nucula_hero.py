@@ -20,6 +20,7 @@ argv = sys.argv[sys.argv.index("--") + 1:]
 REPO = os.path.abspath(argv[0])
 OUT = os.path.abspath(argv[1]) if len(argv) > 1 else "/tmp/nucula-hero"
 FRAMES = int(argv[2]) if len(argv) > 2 else 165
+SAVEONLY = len(argv) > 3 and argv[3] == "saveonly"
 EXP = os.path.join(REPO, "output", "exports")
 os.makedirs(OUT, exist_ok=True)
 
@@ -89,9 +90,12 @@ def main():
         for poly in o.data.polygons:
             poly.use_smooth = True
 
+    parts = list(objs.values())
+    corners = [tuple(v[i] for i in range(3)) for o in parts for v in o.bound_box]
+    cmin = [min(c[i] for c in corners) for i in range(3)]
+    cmax = [max(c[i] for c in corners) for i in range(3)]
+    center = tuple((cmin[i] + cmax[i]) / 2 for i in range(3))
     bb = objs["bottom"].dimensions
-    bbox = objs["bottom"].bound_box
-    center = (sum(v[0] for v in bbox) / 8, sum(v[1] for v in bbox) / 8, 0)
 
     # ground plane
     bpy.ops.mesh.primitive_plane_add(size=900, location=(center[0], center[1], -14))
@@ -122,23 +126,25 @@ def main():
 
     # camera: orbit empty at device center + track-to focus (never drifts)
     cam_data = bpy.data.cameras.new("cam")
-    cam_data.lens = 50
+    cam_data.lens = 85   # long lens kills frame breathing on elongated parts
     cam = bpy.data.objects.new("cam", cam_data)
     scene.collection.objects.link(cam)
     scene.camera = cam
 
-    R = max(bb.x, bb.y) * 1.55 + 30
+    diag = math.dist((cmin[0], cmin[1]), (cmax[0], cmax[1]))
+    hfov = 2 * math.atan(18.0 / 85.0)          # 36mm sensor, 85mm lens
+    R = (diag * 1.18) / (2 * math.tan(hfov / 2))   # diagonal fills ~85% width
     settle_frame = int(FRAMES * 0.38)
 
     orbit = bpy.data.objects.new("orbit", None)
     scene.collection.objects.link(orbit)
     orbit.location = (center[0], center[1], 0)
     cam.parent = orbit
-    cam.location = (R, 0.0, R * 0.42)
+    cam.location = (R, 0.0, R * 0.34)
 
     focus = bpy.data.objects.new("focus", None)
     scene.collection.objects.link(focus)
-    focus.location = (center[0], center[1], 8.0)
+    focus.location = center
     con = cam.constraints.new(type="TRACK_TO")
     con.target = focus
     con.track_axis = "TRACK_NEGATIVE_Z"
@@ -174,9 +180,9 @@ def main():
         for kp in fc.keyframe_points:
             kp.interpolation = "BEZIER"
     # gentle dolly-in during the settle phase only
-    cam.location = (R * 1.25, 0.0, R * 0.55)
+    cam.location = (R * 1.3, 0.0, R * 0.5)
     cam.keyframe_insert("location", frame=1)
-    cam.location = (R, 0.0, R * 0.42)
+    cam.location = (R, 0.0, R * 0.34)
     cam.keyframe_insert("location", frame=settle_frame)
 
     # render settings
@@ -203,14 +209,22 @@ def main():
     scene.render.ffmpeg.constant_rate_factor = "MEDIUM"
     scene.render.filepath = os.path.join(OUT, "nucula_hero.mp4")
 
+    if SAVEONLY:
+        bpy.ops.wm.save_as_mainfile(
+            filepath=os.path.join(OUT, "hero.blend"))
+        print("BLEND_SAVED")
+        return
+
     for still in (int(FRAMES * 0.2), settle_frame, int(FRAMES * 0.8)):
         scene.frame_set(still)
         scene.render.filepath = os.path.join(OUT, f"still_{still:03d}.png")
         scene.render.image_settings.file_format = "PNG"
         bpy.ops.render.render(write_still=True)
 
-    scene.render.filepath = os.path.join(OUT, "nucula_hero.mp4")
-    scene.render.image_settings.file_format = "FFMPEG"
+    import glob as _g
+    scene.render.image_settings.file_format = "PNG"
+    scene.render.filepath = os.path.join(OUT, "frames", "frame_####.png")
+    os.makedirs(os.path.join(OUT, "frames"), exist_ok=True)
     bpy.ops.render.render(animation=True)
     print("HERO_DONE", OUT)
 
