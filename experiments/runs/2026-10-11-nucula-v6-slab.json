@@ -1,0 +1,18 @@
+{
+  "run_id": "2026-10-11-nucula-v6-slab",
+  "board": "nucula",
+  "board_repo": "https://github.com/Amperstrand/nucula-enclosure",
+  "board_rev": "main @ 9472deb (V5)",
+  "promptset_id": "P-v0 + P16 (new)",
+  "frontend": "kicad",
+  "metrics": {
+    "iterations_to_green": 3,
+    "checks_total": 104,
+    "checks_failed_last": 0,
+    "wall_clock_minutes_s0_s6": 90,
+    "wall_clock_minutes_s6_s8": 0,
+    "semantic_failures": [],
+    "physical_outcome": "none"
+  },
+  "notes": "Uniform-slab redesign driven by user product-polish directive + POS research (SumUp Air 84x84x23, Square Terminal). One flat face at bay_floor+KEYPAD_T; screen + keypad flush; NFC membrane legal by construction. Debug: wall-widening re-closed antenna/USB piercings (678.8+8.7 mm3); lip ring crossed the well (124 mm3 arithmetic); well ring +1.0 overshoot caught by zmax artifact probe. Score 1.0 (104/104). V2 positioned as dry-minimal option."
+}

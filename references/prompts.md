@@ -137,12 +137,30 @@ Conventions: `analysis/*.json` = machine-extracted board geometry;
 > build box or a real playwright install is the reliable host); (c) link
 > both from the README per P14. Renders illustrate; the report decides.
 
+**P16 — silhouette-class polish** *(S3.5, between envelopes and parameters)*
+> Count the silhouettes. A product-grade enclosure has ONE: a single
+> dominant plane story (uniform slab / uniform slim box), with every
+> feature flush or recessed in it. Sum the stacked cross-section steps
+> (flare + podium + proud assembly = 3+ = hobbyist). If the brief allows
+> 'slightly larger', prefer uniform-dimensions-over-feature-cuts: grow
+> walls to the widest zone EVERYWHERE and pull features flush into one
+> face, rather than stepping. Guard the physics while polishing: NFC/RF
+> membranes have max thickness, service headroom sets pocket floors,
+> wall-piercings must be RE-ASSERTED after any wall-widening fuse (they
+> silently re-close). Verify flushness as an artifact probe (bbox zmax
+> == design plane; nothing big above it), never by render.
+
 ## Changelog
 
 - 2026-10-09: P3 (orient) and P11 (board-rev drift) added after the
   nucula portrait-window bug (all booleans green, screen semantically
   rotated) and the J2 PH→SH connector drift discovery. P8 gained the
   artifact-proof clause for the same reason.
+- 2026-10-11: P16 (silhouette-class polish) added after nucula V6: the
+  uniform-slab redesign (one flat face, 104/104) vs V4/V5's three stacked
+  silhouettes; SumUp Air 84x84x23 and Square Terminal as the reference
+  class; wall-widening re-closes piercings (antenna window + USB, 678.8
+  mm3) as the key new trap.
 - 2026-10-10 (evening): P14/P15 (readme-refresh, render-best) added
   while scoring all six enclosures and shipping GLB assemblies; metric
   made bilingual for legacy report schemas (lilygo migration pending).

@@ -181,3 +181,10 @@ X=meta/process.
     presentation (bay depth), chamfered transitions (sloped loft with
     cavity cut), vertical-edge-only radii (top rounding hurts FDM).
     Re-run the full matrix after any of them (V5: 80/80).
+47. Fusing WIDER walls silently re-closes every opening cut into the
+    slim profile: antenna windows, USB, battery slots (V6 lost 678.8 +
+    8.7 mm3 to this). Re-assert all wall-piercings after any
+    wall-widening fuse; the boolean gate catches them by volume.
+48. Silhouette count is a design metric: uniform slab (1) reads as
+    product; stacked steps (3+) reads as hobbyist. Flushness is
+    artifact-provable (bbox zmax == face plane).
