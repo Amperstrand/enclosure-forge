@@ -1,0 +1,80 @@
+[
+ {
+  "repo": "nucula-V6-slab",
+  "score": 0.8,
+  "passed": 104,
+  "total": 104,
+  "iterations": 3,
+  "semantic_failures": [],
+  "vetoed": false,
+  "silhouette_regimes": 2,
+  "bed_contact_pct": 5.9,
+  "shelf_area_cm2": 77.59,
+  "stl": "V6_bottom_shell_slab.stl"
+ },
+ {
+  "repo": "nucula-V5-terminal",
+  "score": 0.8,
+  "passed": 104,
+  "total": 104,
+  "iterations": 3,
+  "semantic_failures": [],
+  "vetoed": false,
+  "silhouette_regimes": 6,
+  "bed_contact_pct": 6.2,
+  "shelf_area_cm2": 69.38,
+  "stl": "V4_bottom_shell_terminal.stl"
+ },
+ {
+  "repo": "rp2040",
+  "score": 1.0,
+  "passed": 7,
+  "total": 7,
+  "iterations": 1,
+  "semantic_failures": [],
+  "vetoed": false,
+  "silhouette_regimes": 1,
+  "bed_contact_pct": 30.4,
+  "shelf_area_cm2": 0.2,
+  "stl": "bottom_shell.stl"
+ },
+ {
+  "repo": "easyduino-esp32",
+  "score": 0.85,
+  "passed": 7,
+  "total": 7,
+  "iterations": 2,
+  "semantic_failures": [],
+  "vetoed": false,
+  "silhouette_regimes": 1,
+  "bed_contact_pct": 24.0,
+  "shelf_area_cm2": 0.61,
+  "stl": "bottom_shell.stl"
+ },
+ {
+  "repo": "easyduino-esp32s3",
+  "score": 1.0,
+  "passed": 7,
+  "total": 7,
+  "iterations": 1,
+  "semantic_failures": [],
+  "vetoed": false,
+  "silhouette_regimes": 1,
+  "bed_contact_pct": 24.7,
+  "shelf_area_cm2": 0.95,
+  "stl": "bottom_shell.stl"
+ },
+ {
+  "repo": "easyduino-pico",
+  "score": 1.0,
+  "passed": 7,
+  "total": 7,
+  "iterations": 1,
+  "semantic_failures": [],
+  "vetoed": false,
+  "silhouette_regimes": 1,
+  "bed_contact_pct": 19.2,
+  "shelf_area_cm2": 0.21,
+  "stl": "bottom_shell.stl"
+ }
+]
