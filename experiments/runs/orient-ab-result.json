@@ -1,0 +1,19 @@
+{
+ "zeroshot": {
+  "text": "Canonical hold for all downstream enclosure work \u2014 **portrait stick, component face toward the user, USB edge at the bottom**: long axis (v, 51.0 mm) vertical, width axis (u, 21.0 mm) horizontal; board-local (u,v) = KiCad (X\u2212x0, Y\u2212y0), KiCad Y grows toward v-max [citation: easyduino-pico-enclosure/analysis/pcb_geometry.json coordinate_note + outline].\n- **Bottom end (functional anchor) = the v=0 edge:** hosts J1, the only edge-mating connector \u2014 shell span u 5.86\u201315.5 (center u=10.68), body v 1.4\u20137.72, mouth ~1.4 mm in from the board edge; cable inserts horizontally, plug axis parallel to v, from outside the bottom wall [citation: easyduino-pico-enclosure/analysis/component_geometry.json J1; board_context README excerpt \"micro-USB at the v=0 edge\" echoed in easyduino-pico-enclosure/README.md]. NOTE: family predecessors placed USB at v-max \u2014 this board's mating wall is v=0; the *rule* (\"USB edge = anchor\") transfers, the family coordinate does not [citation: easyduino-pico-enclosure/stages/02-orient.json (family precedent, and itself wrong for this board); enclosure-forge/references/lessons.md L6].\n- **Doc conflict, resolved:** README/docs say \"micro-B\"; the extracted footprint is U",
+  "usb_v0": true,
+  "retention_holes": true,
+  "portrait": true
+ },
+ "fewshot": {
+  "text": "Canonical hold for all downstream enclosure work \u2014 **portrait stick, component face toward the user, USB edge at the bottom**: long axis (v, 51.0 mm) vertical, width axis (u, 21.0 mm) horizontal; board-local (u,v) = KiCad (X\u2212x0, Y\u2212y0), KiCad Y grows toward v-max [citation: easyduino-pico-enclosure/analysis/pcb_geometry.json coordinate_note + outline].\n- **Bottom end (functional anchor) = the v=0 edge:** hosts J1, the only edge-mating connector \u2014 shell span u 5.86\u201315.5 (center u=10.68), body v 1.4\u20137.72, mouth ~1.4 mm in from the board edge; cable inserts horizontally, plug axis parallel to v, from outside the bottom wall [citation: easyduino-pico-enclosure/analysis/component_geometry.json J1; board_context README excerpt \"micro-USB at the v=0 edge\" echoed in easyduino-pico-enclosure/README.md]. NOTE: family predecessors placed USB at v-max \u2014 this board's mating wall is v=0; the *rule* (\"USB edge = anchor\") transfers, the family coordinate does not [citation: easyduino-pico-enclosure/stages/02-orient.json (family precedent, and itself wrong for this board); enclosure-forge/references/lessons.md L6].\n- **Doc conflict, resolved:** README/docs say \"micro-B\"; the extracted footprint is U",
+  "usb_v0": true,
+  "retention_holes": true,
+  "portrait": true
+ },
+ "zeroshot_recorded": {
+  "usb_v0": true,
+  "retention_holes": true,
+  "portrait": true
+ }
+}

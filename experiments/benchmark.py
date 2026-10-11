@@ -39,6 +39,7 @@ REPOS = {
                           "bottom_shell.stl", 1),
     "easyduino-pico": ("~/src/easyduino-pico-enclosure",
                        "bottom_shell.stl", 1),
+    "specter-diy-t7": ("~/src/specter-diy-case", "bottom_shell.stl", 3),
 }
 
 

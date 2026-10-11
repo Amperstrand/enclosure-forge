@@ -188,3 +188,13 @@ X=meta/process.
 48. Silhouette count is a design metric: uniform slab (1) reads as
     product; stacked steps (3+) reads as hobbyist. Flushness is
     artifact-provable (bbox zmax == face plane).
+49. reference_stl front-end: when no board files exist but a human
+    case does, measure the reference STLs (cavity sections = board
+    envelope; aperture = rim) and tag derived_reference_stl. Target #7
+    went boardless this way.
+50. Tall sandwiches (>=5mm stacks) cannot slide under PCB-style edge
+    lips - they ARE the edge. Full-height guide rails + lid-frame clamp
+    is the correct retention class (and matches the human snapcase).
+51. Stage A/B graders need headroom: an orientation grader that all
+    arms pass on family-similar boards measures nothing - held-out
+    diversity is a grader property, not just a trainset property.

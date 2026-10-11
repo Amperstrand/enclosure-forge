@@ -1,0 +1,18 @@
+{
+  "run_id": "2026-10-11-specter-t7",
+  "board": "specter-diy (STM32F469 DISCO + shield + QR scanner stack)",
+  "board_repo": "https://github.com/cryptoadvance/specter-diy",
+  "board_rev": "main (clone 2026-10-11)",
+  "promptset_id": "P-v0 + P16/P17 + human-design-playbook",
+  "frontend": "reference_stl (NEW: derived_reference_stl provenance class)",
+  "metrics": {
+    "iterations_to_green": 3,
+    "checks_total": 6,
+    "checks_failed_last": 0,
+    "wall_clock_minutes_s0_s6": 60,
+    "wall_clock_minutes_s6_s8": 0,
+    "semantic_failures": [],
+    "physical_outcome": "none"
+  },
+  "notes": "REPRODUCTION MILESTONE: first target measured from a HUMAN reference (snapcase STLs) rather than board files. Debug iterations were design-class corrections: rails inside the envelope (1642 mm3) -> outside with lips (736) -> full-height guides (tall sandwiches cannot slide under edge lips - new lesson); lid clamp is the named intended contact; slide check runs lid-off (human assembly order). Head-to-head benchmark: regimes 1 vs human 2, bed 31 vs 30, shelf 0.0 = 0.0. Orient A/B (same session): few-shot == zero-shot == recorded on all 3 deterministic grades (ceiling effect - grader too easy for the family-similar devkit boards; needs harder held-out diversity)."
+}

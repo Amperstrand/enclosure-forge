@@ -76,5 +76,18 @@
   "bed_contact_pct": 19.2,
   "shelf_area_cm2": 0.21,
   "stl": "bottom_shell.stl"
+ },
+ {
+  "repo": "specter-diy-t7",
+  "score": 0.8,
+  "passed": 6,
+  "total": 6,
+  "iterations": 3,
+  "semantic_failures": [],
+  "vetoed": false,
+  "silhouette_regimes": 1,
+  "bed_contact_pct": 31.0,
+  "shelf_area_cm2": 0.0,
+  "stl": "bottom_shell.stl"
  }
 ]
