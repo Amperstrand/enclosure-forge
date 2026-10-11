@@ -150,6 +150,16 @@ Conventions: `analysis/*.json` = machine-extracted board geometry;
 > silently re-close). Verify flushness as an artifact probe (bbox zmax
 > == design plane; nothing big above it), never by render.
 
+**P17 — config-matrix modularity** *(S4/S5, structural)*
+> The variant list is a FLAG MATRIX, not an enum: {board, screen,
+> keypad, battery, usb, profile, ...}. Builders consume flags; every
+> combination is buildable and validatable; constraints (keypad needs
+> full board; treatments bind to profiles) assert loudly, never
+> silently downgrade. Ship a config-matrix build (8+ combos), a
+> --config CLI, and an in-browser configurator on Pages with a
+> Show-PCB toggle so printed-parts vs assembly is one click. User
+> configs you didn't imagine are the point.
+
 ## Changelog
 
 - 2026-10-09: P3 (orient) and P11 (board-rev drift) added after the
