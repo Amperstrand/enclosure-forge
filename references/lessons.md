@@ -198,3 +198,10 @@ X=meta/process.
 51. Stage A/B graders need headroom: an orientation grader that all
     arms pass on family-similar boards measures nothing - held-out
     diversity is a grader property, not just a trainset property.
+52. OpenCodeLM on remote boxes needs the full binary path
+    (/root/.opencode/bin/opencode on ai-legion) in non-interactive SSH;
+    `which opencode` finds nothing outside login shells.
+53. The Orient A/B results mean the P3 signature already carries enough
+    signal that zero-shot gets the portrait-window class right. The
+    prompts are ahead of the grader — the bottleneck is measurement
+    design, not prompt quality.
