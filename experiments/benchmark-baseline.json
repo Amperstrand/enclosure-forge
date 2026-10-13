@@ -80,8 +80,8 @@
  {
   "repo": "specter-diy-t7",
   "score": 0.8,
-  "passed": 6,
-  "total": 6,
+  "passed": 7,
+  "total": 7,
   "iterations": 3,
   "semantic_failures": [],
   "vetoed": false,

@@ -205,3 +205,7 @@ X=meta/process.
     signal that zero-shot gets the portrait-window class right. The
     prompts are ahead of the grader — the bottleneck is measurement
     design, not prompt quality.
+54. Generic hero renderer: one script, any repo's STLs — the discovery
+    pattern (glob bottom*/lid*/reference_*/keypad_*) handles all target
+    types without per-board code. Chunked CUDA renders on a 3060 Ti:
+    120 frames at 192 samples ≈ 5 min per board (6 boards ≈ 30 min).
